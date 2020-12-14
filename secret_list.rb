@@ -16,19 +16,11 @@ list.each do |member|
   end
   left_members.delete_at index
 
-
-  print "#{member} -> #{target}\n"
-
-
-
-
-
-
-  canvas = Magick::Image.new(300, 100){self.background_color = 'yellow'}
+  canvas = Magick::Image.new(300, 100) { self.background_color = 'white' }
   gc = Magick::Draw.new
   gc.pointsize(50)
-  gc.text(30,70, "TEXT".center(14))
+  gc.text(30, 70, "#{target}".center(14))
 
   gc.draw(canvas)
-  canvas.write('tst.png')
+  canvas.write("#{member}.png")
 end
