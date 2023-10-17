@@ -1,5 +1,6 @@
 //{ Driver Code Starts
-//#include <bits/stdc++.h>
+#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
 struct Node
@@ -94,6 +95,7 @@ class Solution {
     a duplicate subtree of size 2 or more else returns false*/
     int dupSub(Node *root) {
          // code here
+		 return 0;
     }
 };
 
