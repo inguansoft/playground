@@ -1,0 +1,98 @@
+(add-to-list 'load-path "~/elisp/")
+
+(require 'python)
+(require 'python-mode)
+(require 'python-django)
+
+(global-set-key (kbd "C-x j") 'python-django-open-project)
+;; ------------------------------------------------------------------
+;; Python support
+;; ------------------------------------------------------------------
+(setq auto-mode-alist (cons '("\\.py$" . python-mode) auto-mode-alist))
+(setq interpreter-mode-alist
+      (cons '("python" . python-mode) interpreter-mode-alist))
+(autoload 'python-mode "python-mode" "Python editing mode." t)
+
+
+
+
+(require 'sws-mode)
+(require 'jade-mode)    
+(add-to-list 'auto-mode-alist '("\\.styl$" . sws-mode))
+(add-to-list 'auto-mode-alist '("\\.jade$" . jade-mode))
+
+
+
+(eval-after-load 'info
+  '(progn (info-initialize)
+          (add-to-list 'Info-directory-list "~/elisp")))
+(require 'magit)
+
+
+
+(global-set-key [C-M-right] 'bury-buffer)
+(fset 'normal
+   [escape ?h escape ?x ?f ?i ?l ?l ?- ?i ?n ?d ?i ?v ?i ?d ?u ?a ?l ?- ?p ?a ?r ?a ?g ?r ?a ?p ?h ?s return])
+(global-set-key [C-M-up] 'normal)
+(global-set-key [C-M-left] #'(lambda ()
+                               (interactive)
+                               (switch-to-buffer (car (reverse (buffer-list))))))
+(global-set-key [M-down] 'other-window)
+(transient-mark-mode 1)
+(global-font-lock-mode 1)
+
+(setq make-backup-files nil)
+
+;; ------------------------------------------------------------------
+;; Ruby support
+;; ------------------------------------------------------------------
+;;(require 'ruby-electric)
+;;(autoload 'ruby-mode "ruby-mode" "Load ruby-mode")
+;;(add-to-list 'auto-mode-alist '("\\.rb\\'" . ruby-mode))
+;;(add-to-list 'auto-mode-alist '("\\.rjs\\'" . ruby-mode))
+
+;; ------------------------------------------------------------------
+;; yaml mode
+;; ------------------------------------------------------------------
+(autoload 'yaml-mode "yaml-mode" "Load YAML-mode")
+(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+
+
+;; ------------------------------------------------------------------
+;; CSS support
+;; ------------------------------------------------------------------
+(autoload 'css-mode "css-mode" "Load css-mode")
+(add-to-list 'auto-mode-alist '("\\.css\\'" . css-mode))
+
+(add-to-list 'auto-mode-alist '("\\.m\\'" . c-mode))
+
+
+
+(custom-set-faces
+  ;; custom-set-faces was added by Custom -- don't edit or cut/paste it!
+  ;; Your init file should contain only one such instance.
+
+;;backup
+;; '(default ((t (:stipple nil :background "black" :foreground "gold" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :family "outline-courier new"))))
+
+ '(default ((t (:stipple nil :background "black" :foreground "gold" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
+
+
+ '(region ((((class color) (background dark)) (:background "blue")))))
+
+(put 'downcase-region 'disabled nil)
+
+(autoload 'html-helper-mode "html-helper-mode" "Yay HTML" t)
+;;To invoke html-helper-mode automatically on .html files, do this:
+(setq auto-mode-alist (cons '("\\.html$" . html-helper-mode) auto-mode-alist))
+;;To invoke html-helper-mode automatically on .asp files, do this:
+(setq auto-mode-alist (cons '("\\.asp$" . html-helper-mode) auto-mode-alist))
+;;To invoke html-helper-mode automatically on .phtml files, do this:
+(setq auto-mode-alist (cons '("\\.rhtml$" . html-helper-mode) auto-mode-alist))
+
+
+(desktop-load-default)
+(desktop-read)
+(ffap-bindings)
+
+(setq default-directory "~/declara")

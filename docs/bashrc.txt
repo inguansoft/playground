@@ -1,0 +1,116 @@
+SSH_ENV=$HOME/.ssh/environment
+   
+# start the ssh-agent
+function start_agent {
+    echo "Initializing new SSH agent..."
+    # spawn ssh-agent
+    /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+    echo succeeded
+    chmod 600 "${SSH_ENV}"
+    . "${SSH_ENV}" > /dev/null
+    /usr/bin/ssh-add
+}
+   
+if [ -f "${SSH_ENV}" ]; then
+     . "${SSH_ENV}" > /dev/null
+     ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+        start_agent;
+    }
+else
+    start_agent;
+fi
+
+function elastic() {
+    /usr/local/share/elasticsearch/bin/elasticsearch -d
+}
+
+function d() {
+    git diff
+}
+
+function s() {
+    git status
+}
+
+function f() {
+    git fetch
+}
+
+function t() {
+    echo -n -e "\033]0;$1\007"
+}
+
+function newfix() {
+    if [ $1 ]; then
+	local=$(echo $1 | sed s/^.*-/p/)
+	git fetch
+	git checkout develop
+	git rebase origin/develop
+	git push origin develop:bugfix/$1
+	git checkout origin/bugfix/$1 -b $local
+    else
+	echo 'need to pass the ticket number'
+    fi
+}
+
+parse_git_branch() {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
+}
+
+function get_repo_name() {
+if git rev-parse --git-dir > /dev/null 2>&1; then
+  : 
+    basename `git rev-parse --show-toplevel` 2>&1 /dev/null
+else
+  : 
+    pwd
+fi
+}
+
+function remoteBranch() {
+    git rev-parse --abbrev-ref --symbolic-full-name @{u} 2> /dev/null | sed 's/origin\///'
+}
+
+function ediff() {
+	if [ "X${2}" = "X" ]; then
+		echo "USAGE: ediff <FILE 1> <FILE 2>"
+	else
+		emacs --eval "(ediff-files \"$1\" \"$2\")"
+	fi
+}
+
+PS1="\[\e[01;31m\]\$(parse_git_branch)\[\e[00m\]:\$(remoteBranch) \w:\n\[\e[01;31m\]$ \[\e[00m\]"
+
+PROMPT_COMMAND='echo -ne "\033]0;$(get_repo_name)\007"'
+
+
+
+# D3 aliases (each alias is one long line)
+alias d3="java -jar ${HOME}/declara/declara3_server/declara-webapi/target/declara-webapi-0.0.1-SNAPSHOT.jar --spring.profiles.active=default --spring.config.location=${HOME}/declara/etc/application.yml"
+ 
+alias d3_note="java -jar ${HOME}/declara/declara_notification/target/declara-notification-webapi-0.0.1-SNAPSHOT.jar --spring.profiles.active=default --spring.config.location=${HOME}/declara/etc/notification.yml"
+ 
+alias d3_auth="java -jar ${HOME}/declara/declara3_server/declara-auth/target/declara-auth-0.0.1-SNAPSHOT.jar --spring.profiles.active=default --spring.config.location=${HOME}/declara/etc/auth.yml"
+
+
+
+
+
+if [ -f $HOME/declara/build-deploy/devel/devbashrc ]; then
+  source $HOME/declara/build-deploy/devel/devbashrc
+fi
+
+#export GEM_HOME=/usr/local/rubygems
+#/usr/local/rubygems/bin:
+
+PATH=./node_modules/.bin/:~/declara/declara_client/client/SocialNetwork/node_modules/karma/bin:$PATH:$HOME/.rvm/bin:/Applications/microchip/xc8/v1.31/bin:~/bin
+
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+
+
+export EMAIL_E2E="mauricio.inguanzo@declara.com"
+export PASSWORD_E2E="ama21nG2013"
+export SMTPSERVER_E2E="smtp.gmail.com"
+
