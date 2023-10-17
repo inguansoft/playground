@@ -1,17 +1,17 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include <iostream>
+using namespace std;
 
+// class Animal {
+//  	      int speed;
+//  	      Animal Animal() {
+//  	      }
+//  };
 
-Class Animal {
-
-	      int speed;
-	      
-	      Animal Animal() {
-	      }
-}
-
-int main(void) {
-  puts("Hello world !!!");
-  return EXIT_SUCCESS;
+int main() {
+	int t;
+	cin >> t;
+	cout << t << "\n";
+	cout << "hello world" << "\n";
+  return 0;
 
 }
