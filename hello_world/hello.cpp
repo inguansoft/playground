@@ -9,6 +9,41 @@ using namespace std;
 
 struct ClockOfTheLongNow
 {
+private:
+	int year;
+
+	bool check_year()
+	{
+		return check_year(year);
+	}
+	bool check_year(int this_year)
+	{
+		return this_year > 1000 && this_year < 4000;
+	}
+
+public:
+	void add_year()
+	{
+		year++;
+	}
+	bool set_year(int new_year)
+	{
+		if (check_year(new_year))
+		{
+			year = new_year;
+			return true;
+		}
+		return false;
+	}
+	int get_year()
+	{
+		if (!check_year())
+		{
+			printf("Year is invalid");
+		}
+		return year;
+	}
+
 	ClockOfTheLongNow(int year_in)
 	{
 		if (!set_year(year_in))
