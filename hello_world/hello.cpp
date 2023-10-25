@@ -7,6 +7,42 @@ using namespace std;
 //  	      }
 //  };
 
+struct Taxonomist
+// class Taxonomist
+{
+private:
+	int part_0;
+
+public:
+	void set_part(int value)
+	{
+		part_0 = value;
+	}
+
+	int give_me_my_part()
+	{
+		return part_0;
+	}
+
+	Taxonomist()
+	{
+		printf("(no argument)\n");
+	}
+	Taxonomist(char x)
+	{
+		printf("char: %c\n", x);
+	}
+	Taxonomist(int x)
+	{
+		part_0 = x;
+		printf("int: %d\n", x);
+	}
+	Taxonomist(float x)
+	{
+		printf("float: %f\n", x);
+	}
+};
+
 struct ClockOfTheLongNow
 {
 private:
@@ -58,6 +94,11 @@ int step_function(int x)
 	return (x + 1) * 23;
 }
 
+void sample_function(Taxonomist *taxo_instance)
+{
+	printf("------- this is %d\n", taxo_instance->give_me_my_part());
+}
+
 int main()
 {
 	ClockOfTheLongNow venga = {1995};
@@ -101,9 +142,30 @@ int main()
 	};
 
 	Var_dd v;
+	Taxonomist taxo = Taxonomist(3);
+	Taxonomist taxoo[] = {99,
+						  2,
+						  3};
+	Taxonomist *tax_ptr = &taxoo[0];
+
+	sample_function(tax_ptr);
+	sample_function(taxoo); // same as previous call, lets try the ++ concept
+	tax_ptr++;
+	sample_function(tax_ptr);
+	tax_ptr++;
+	sample_function(tax_ptr);
+	tax_ptr++; // can I?  Yes I can, nad it is garbage   ooopps
+	sample_function(tax_ptr);
+	tax_ptr->set_part(444); // Lets set that memory that was not explicitly created
+	sample_function(tax_ptr);// Yes I can   TODO: This modt be lazy instantiation or a DONT DO it thing, lets research
+
+	int *my_ptr;
+	int numero = 9;
+	my_ptr = &numero;
 	v.integer = 42;
 	printf("Year: %d\n", venga.get_year());
 	printf("The ultimate answer: %d\n", v.integer);
+	printf("The value of my_ptr on %d (%p) is %p as %d.\n", numero, &numero, my_ptr, *my_ptr);
 	// v.floating_point = 2.7182818284;
 	v.floating_point = 0;
 	printf("Euler's number e:    %f\n", v.floating_point);
