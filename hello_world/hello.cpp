@@ -154,7 +154,7 @@ int main()
 	sample_function(tax_ptr);
 	tax_ptr++;
 	sample_function(tax_ptr);
-	tax_ptr++; // can I?  Yes I can, nad it is garbage   ooopps
+	tax_ptr++; // can I?  Yes I can, nad it is garbage   ooopps  Never do this
 	sample_function(tax_ptr);
 	tax_ptr->set_part(444); // Lets set that memory that was not explicitly created
 	sample_function(tax_ptr);// Yes I can   TODO: This modt be lazy instantiation or a DONT DO it thing, lets research
