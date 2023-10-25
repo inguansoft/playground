@@ -60,6 +60,7 @@ int step_function(int x)
 
 int main()
 {
+	ClockOfTheLongNow venga = {1995};
 	enum class Race
 	{
 		Dinan,
@@ -71,7 +72,7 @@ int main()
 		Aidan
 	};
 	Race this_race = Race::Dinan;
-	int t = 0b010101, xx = 0x03f;
+	int t = 0b010101, xx{0x03f}, aaa(9), bb = {33};
 	float float_variable = 1.3F;
 	double d_variable = 1.3L;
 	double plancks_constant = 6.62607004e-34;
@@ -101,6 +102,7 @@ int main()
 
 	Var_dd v;
 	v.integer = 42;
+	printf("Year: %d\n", venga.get_year());
 	printf("The ultimate answer: %d\n", v.integer);
 	// v.floating_point = 2.7182818284;
 	v.floating_point = 0;
