@@ -106,7 +106,7 @@ int main()
 	
 	int t;
 	cin >> t;
-	//cout << t << "\n";
+	cout << ">>>[" << t << "]\n";
 	while (t--)
 	{
 		string treeString;
