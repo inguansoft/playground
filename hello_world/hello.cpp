@@ -48,11 +48,11 @@ struct ClockOfTheLongNow
 private:
 	int year;
 
-	bool check_year()
+	bool check_year() const
 	{
 		return check_year(year);
 	}
-	bool check_year(int this_year)
+	bool check_year(int this_year) const
 	{
 		return this_year > 1000 && this_year < 4000;
 	}
@@ -71,7 +71,14 @@ public:
 		}
 		return false;
 	}
-	int get_year()
+	int get_year_light() const 
+	{
+		return year;
+	}
+	
+	//TODO: Why? Holders of const references and pointers cannot invoke methods that are not const,
+	//int get_year() const - const methods cannot call private methods
+	int get_year() const
 	{
 		if (!check_year())
 		{
@@ -97,6 +104,11 @@ int step_function(int x)
 void sample_function(Taxonomist *taxo_instance)
 {
 	printf("------- this is %d\n", taxo_instance->give_me_my_part());
+}
+
+void sample_function_ref(Taxonomist &taxo_instance)
+{
+	printf("-------REF this is %d\n", taxo_instance.give_me_my_part());
 }
 
 int main()
@@ -150,14 +162,15 @@ int main()
 
 	sample_function(tax_ptr);
 	sample_function(taxoo); // same as previous call, lets try the ++ concept
+	sample_function_ref(taxoo[0]); // using references rather thna pointers
 	tax_ptr++;
 	sample_function(tax_ptr);
 	tax_ptr++;
 	sample_function(tax_ptr);
 	tax_ptr++; // can I?  Yes I can, nad it is garbage   ooopps  Never do this
 	sample_function(tax_ptr);
-	tax_ptr->set_part(444); // Lets set that memory that was not explicitly created
-	sample_function(tax_ptr);// Yes I can   TODO: This modt be lazy instantiation or a DONT DO it thing, lets research
+	tax_ptr->set_part(444);	  // Lets set that memory that was not explicitly created
+	sample_function(tax_ptr); // Yes I can   TODO: This modt be lazy instantiation or a DONT DO it thing, lets research
 
 	int *my_ptr;
 	int numero = 9;
