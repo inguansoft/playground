@@ -74,13 +74,13 @@ public:
 		}
 		return false;
 	}
-	int get_year_light() const 
+	int get_year_light() const
 	{
 		return year;
 	}
-	
-	//TODO: Why? Holders of const references and pointers cannot invoke methods that are not const,
-	//int get_year() const - const methods cannot call private methods
+
+	// TODO: Why? Holders of const references and pointers cannot invoke methods that are not const,
+	// int get_year() const - const methods cannot call private methods
 	int get_year() const
 	{
 		if (!check_year())
@@ -111,7 +111,7 @@ void sample_function(Taxonomist *taxo_instance)
 	printf("------- this is %d\n", taxo_instance->give_me_my_part());
 }
 
-void sample_function_ref(Taxonomist &taxo_instance)
+void sample_function_ref(Taxonomist &taxo_instance) noexcept //Essentially, the compiler is liberated to use move semantics, which may be faster
 {
 	printf("-------REF this is %d\n", taxo_instance.give_me_my_part());
 }
@@ -150,6 +150,15 @@ int main()
 						   " sample 2"
 						   " and sample 3\n";
 	char16_t chinese[] = u"\u4e66\u4e2d\u81ea\u6709\u9ec4\u91d1\u5c4b";
+	int *my_int_ptr_01 = new int(969);
+	int nnn = 10;
+	int *my_int_array_ptr0;
+	my_int_array_ptr0 = new int[nnn];
+	printf("allocated array %p\n", my_int_array_ptr0);
+	my_int_array_ptr0[0] = 11;
+	printf("allocated array %p p[0]= %d\n", my_int_array_ptr0, my_int_array_ptr0[0]);
+	delete[] my_int_array_ptr0;
+	printf("allocated array %p\n", my_int_array_ptr0);
 
 	union Var_dd
 	{
@@ -166,7 +175,7 @@ int main()
 	Taxonomist *tax_ptr = &taxoo[0];
 
 	sample_function(tax_ptr);
-	sample_function(taxoo); // same as previous call, lets try the ++ concept
+	sample_function(taxoo);		   // same as previous call, lets try the ++ concept
 	sample_function_ref(taxoo[0]); // using references rather thna pointers
 	tax_ptr++;
 	sample_function(tax_ptr);
@@ -181,14 +190,25 @@ int main()
 	int numero = 9;
 	my_ptr = &numero;
 	v.integer = 42;
-	printf("Year: %d\n", venga.get_year());
-	printf("The ultimate answer: %d\n", v.integer);
-	printf("The value of my_ptr on %d (%p) is %p as %d.\n", numero, &numero, my_ptr, *my_ptr);
-	// v.floating_point = 2.7182818284;
-	v.floating_point = 0;
-	printf("Euler's number e:    %f\n", v.floating_point);
-	printf("A dumpster fire:     %d\n", v.integer); // Why a  union breaks
 
+	try
+	{
+
+		printf("CONTENT wuth new: %d\n", *my_int_ptr_01);
+		printf("Year: %d\n", venga.get_year());
+		printf("The ultimate answer: %d\n", v.integer);
+		printf("The value of my_ptr on %d (%p) is %p as %d.\n", numero, &numero, my_ptr, *my_ptr);
+		// v.floating_point = 2.7182818284;
+		v.floating_point = 0;
+		printf("Euler's number e:    %f\n", v.floating_point);
+		printf("A dumpster fire:     %d\n", v.integer); // Why a  union breaks
+		throw 'z';										// Don't do this.
+	}
+	catch (...)
+	{
+		// Handles any exception, even a 'z'
+		printf("Exception whatever, even this crazy z thing\n");
+	}
 	cout << english << "\n";
 	cout << chinese << "\n";
 	cout << sample_string;
