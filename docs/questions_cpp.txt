@@ -1,2 +1,10 @@
 How to print asian and unicode characters in C & C++ ?
 How to store long unicode like this one: //wchar_t sample = U'\U0001F37A';  how to declare this kind of unicode?
+
+
+std::string line;
+        std::getline(std::istringstream{str}, line);
+string treeString;
+		getline(cin >> ws, treeString);
+
+

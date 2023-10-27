@@ -6,6 +6,9 @@ using namespace std;
 //  	      Animal Animal() {
 //  	      }
 //  };
+int yy;
+static int rat_things_00;
+extern int rat_things_01;
 
 struct Taxonomist
 // class Taxonomist
@@ -103,6 +106,8 @@ int step_function(int x)
 
 void sample_function(Taxonomist *taxo_instance)
 {
+	static thread_local int rat_things_power = 200;
+	static int rat_things = 200;
 	printf("------- this is %d\n", taxo_instance->give_me_my_part());
 }
 
