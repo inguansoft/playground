@@ -83,6 +83,22 @@ PS1="\[\e[01;31m\]\$(parse_git_branch)\[\e[00m\]:\$(remoteBranch) \w:\n\[\e[01;3
 
 PROMPT_COMMAND='echo -ne "\033]0;$(get_repo_name)\007"'
 
+if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+unset color_prompt force_color_prompt
+
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    ;;
+*)
+    ;;
+esac
+
 
 
 # D3 aliases (each alias is one long line)

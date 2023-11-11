@@ -1,3 +1,11 @@
+
+samba v1
+
+sudo apt install samba
+
+sudo emacs /etc/samba/smb.conf
+client min protocol = NT1
+
 lsb_release -a
 lscpu
 
