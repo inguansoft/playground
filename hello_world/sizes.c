@@ -66,19 +66,19 @@ int main() {
     struct ee ee_instance;
     struct ff ff_instance;
     printf("\nSize of struct ee: %ld\n", sizeof(struct ee));
-    printf("ee arrangement: \n%p (%lu)\n%p (%lu)\n%p (%lu)\n%p (%lu)\n%p (%lu)\n\n",
-           &ee_instance.x, ((uint64_t)&ee_instance.zz - (uint64_t)&ee_instance.x),
-           &ee_instance.zz, ((uint64_t)&ee_instance.a - (uint64_t)&ee_instance.zz),
-           &ee_instance.a, ((uint64_t)&ee_instance.b - (uint64_t)&ee_instance.a),
-           &ee_instance.b, ((uint64_t)&ee_instance.c - (uint64_t)&ee_instance.b),
-           &ee_instance.c, ((uint64_t)&ee_instance.x + sizeof(struct ee) - (uint64_t)&ee_instance.c));
+    printf("ee arrangement: \n%p (%llu)\n%p (%llu)\n%p (%llu)\n%p (%llu)\n%p (%llu)\n\n",
+           &ee_instance.x, ((unsigned long long)&ee_instance.zz - (unsigned long long)&ee_instance.x),
+           &ee_instance.zz, ((unsigned long long)&ee_instance.a - (unsigned long long)&ee_instance.zz),
+           &ee_instance.a, ((unsigned long long)&ee_instance.b - (unsigned long long)&ee_instance.a),
+           &ee_instance.b, ((unsigned long long)&ee_instance.c - (unsigned long long)&ee_instance.b),
+           &ee_instance.c, ((unsigned long long)&ee_instance.x + sizeof(struct ee) - (unsigned long long)&ee_instance.c));
 
     printf("Size of struct ff: %ld\n", sizeof(struct ff));
-    printf("ff arrangement: \n%p (%lu)\n%p (%lu)\n%p (%lu)\n%p (%lu)\n\n",
-           &ff_instance.x, ((uint64_t)&ff_instance.zz - (uint64_t)&ff_instance.x),
-           &ff_instance.zz, ((uint64_t)&ff_instance.a - (uint64_t)&ff_instance.zz),
-           &ff_instance.a, ((uint64_t)&ff_instance.b - (uint64_t)&ff_instance.a),
-           &ff_instance.b, ((uint64_t)&ff_instance.x + sizeof(struct ff) - (uint64_t)&ff_instance.b));
+    printf("ff arrangement: \n%p (%llu)\n%p (%llu)\n%p (%llu)\n%p (%llu)\n\n",
+           &ff_instance.x, ((unsigned long long)&ff_instance.zz - (unsigned long long)&ff_instance.x),
+           &ff_instance.zz, ((unsigned long long)&ff_instance.a - (unsigned long long)&ff_instance.zz),
+           &ff_instance.a, ((unsigned long long)&ff_instance.b - (unsigned long long)&ff_instance.a),
+           &ff_instance.b, ((unsigned long long)&ff_instance.x + sizeof(struct ff) - (unsigned long long)&ff_instance.b));
 
     printf("char: %zu\n", size_c);
     printf("short: %zu\n", size_s);
