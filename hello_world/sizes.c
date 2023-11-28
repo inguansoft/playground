@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 
 int main() {
     uint16_t var_sample_16 = 12;
@@ -65,7 +66,7 @@ int main() {
     struct ee ee_instance;
     struct ff ff_instance;
     printf("\nSize of struct ee: %ld\n", sizeof(struct ee));
-    printf("ee arrangement: \n%p (%llu)\n%p (%llu)\n%p (%llu)\n%p (%llu)\n%p (%llu)\n\n",
+    printf("ee arrangement: \n%p (%lu)\n%p (%lu)\n%p (%lu)\n%p (%lu)\n%p (%lu)\n\n",
            &ee_instance.x, ((uint64_t)&ee_instance.zz - (uint64_t)&ee_instance.x),
            &ee_instance.zz, ((uint64_t)&ee_instance.a - (uint64_t)&ee_instance.zz),
            &ee_instance.a, ((uint64_t)&ee_instance.b - (uint64_t)&ee_instance.a),
@@ -73,7 +74,7 @@ int main() {
            &ee_instance.c, ((uint64_t)&ee_instance.x + sizeof(struct ee) - (uint64_t)&ee_instance.c));
 
     printf("Size of struct ff: %ld\n", sizeof(struct ff));
-    printf("ff arrangement: \n%p (%llu)\n%p (%llu)\n%p (%llu)\n%p (%llu)\n\n",
+    printf("ff arrangement: \n%p (%lu)\n%p (%lu)\n%p (%lu)\n%p (%lu)\n\n",
            &ff_instance.x, ((uint64_t)&ff_instance.zz - (uint64_t)&ff_instance.x),
            &ff_instance.zz, ((uint64_t)&ff_instance.a - (uint64_t)&ff_instance.zz),
            &ff_instance.a, ((uint64_t)&ff_instance.b - (uint64_t)&ff_instance.a),
@@ -85,5 +86,5 @@ int main() {
     printf("long: %zu\n", size_l);
     printf("long long: %zu\n", size_ll);
     printf("Obvious uint16_t: (%d) %zu, %zu\n", var_sample_16, size_unit16, size_unit16b);
-    printf("Obvious uint64_t: (%llu) %zu, %zu\n", var_sample_64, size_unit64, size_unit64b);
+    printf("Obvious uint64_t: (%lu) %zu, %zu\n", var_sample_64, size_unit64, size_unit64b);
 }
