@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <stdint.h>
 
 int main() {
@@ -86,5 +85,5 @@ int main() {
     printf("long: %zu\n", size_l);
     printf("long long: %zu\n", size_ll);
     printf("Obvious uint16_t: (%d) %zu, %zu\n", var_sample_16, size_unit16, size_unit16b);
-    printf("Obvious uint64_t: (%lu) %zu, %zu\n", var_sample_64, size_unit64, size_unit64b);
+    printf("Obvious uint64_t: (%llu) %zu, %zu\n", (unsigned long long)var_sample_64, size_unit64, size_unit64b);
 }
