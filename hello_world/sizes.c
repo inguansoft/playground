@@ -2,6 +2,7 @@
 #include <stdint.h>
 
 int main() {
+    uint8_t var_sample_8a=16, var_sample_8b;
     uint16_t var_sample_16 = 12;
     uint64_t var_sample_64 = 121212;
     size_t size_c = sizeof(char),
@@ -84,6 +85,8 @@ int main() {
     printf("int: %zu\n", size_i);
     printf("long: %zu\n", size_l);
     printf("long long: %zu\n", size_ll);
+    printf("Pointer address: \n%p\n%p (pointers gap:%llu)\n", &var_sample_8a, &var_sample_8b,
+           (unsigned long long)&var_sample_8a - (unsigned long long)&var_sample_8b);
     printf("Obvious uint16_t: (%d) %zu, %zu\n", var_sample_16, size_unit16, size_unit16b);
     printf("Obvious uint64_t: (%llu) %zu, %zu\n", (unsigned long long)var_sample_64, size_unit64, size_unit64b);
 }
