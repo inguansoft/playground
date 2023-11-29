@@ -1,21 +1,29 @@
 High address
-+--------------------+--------------------+
-|  stack     |       |   functions and environment context
-|           \ /      | 
-+--------------------+--------------------+
-|                    |                    |
-|                    |                    |
-+--------------------+--------------------+
-|  heap     / \      |  alloc, free
-|            |       |                    |
-+--------------------+--------------------+
-|  uninitialized     | global or static var
-|  data    bss       | uninitialized
-+--------------------+--------------------+
-|  initialized       | global or static var
-|  data              | initialized
-+--------------------+--------------------+
-|  text              |  program
-|                    | 
-+--------------------+--------------------+
++--------------------+------+--------------------+
+|  stack     |       |      | functions &
+|           \ /      |      | environment context
++--------------------+------+--------------------+
+|                    |      |                    |
+|                    |      |                    |
++--------------------+------+--------------------+
+|  heap     / \      |      |  alloc, free
+|            |       |      |
++--------------------+------+--------------------+
+|  uninitialized     | bss  | global or static var
+|  data    bss       |      | uninitialized
++--------------------+------+--------------------+
+|  initialized       | data | global or static var
+|  data              |      | initialized
++--------------------+------+--------------------+
+|  text              | text |  program
+|                    |      | 
++--------------------+------+--------------------+
 Low address
+
+what about scoped variables? init? uninit?
+maybe they are part of the stack init or uninit
+
+size <program> output example
+   OK      OK       OK      ?       ?   filename
+   text	   data	    bss	    dec	    hex	filename
+   1398	    604	      4	   2006	    7d6	silly

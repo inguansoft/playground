@@ -1,6 +1,6 @@
 #include <cstddef>
 #include <cstdio>
-
+#define HU_VAR 999
 int main() {
   size_t size_c = sizeof(char); 
   printf("char: %zu\n", size_c);
