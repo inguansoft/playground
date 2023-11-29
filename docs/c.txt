@@ -1,0 +1,21 @@
+High address
++--------------------+--------------------+
+|  stack     |       |   functions and environment context
+|           \ /      | 
++--------------------+--------------------+
+|                    |                    |
+|                    |                    |
++--------------------+--------------------+
+|  heap     / \      |  alloc, free
+|            |       |                    |
++--------------------+--------------------+
+|  uninitialized     | global or static var
+|  data    bss       | uninitialized
++--------------------+--------------------+
+|  initialized       | global or static var
+|  data              | initialized
++--------------------+--------------------+
+|  text              |  program
+|                    | 
++--------------------+--------------------+
+Low address
