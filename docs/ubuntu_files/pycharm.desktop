@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=pycharm
+Comment=pycharm
+GenericName=pycharm
+Exec=/usr/bin/pycharm-2023.2.5/bin/pycharm.sh
+Icon=/usr/bin/pycharm-2023.2.5/bin/pycharm.png
+Path=/usr/bin/pycharm-2023.2.5/bin/
+Terminal=false
+StartupNotify=true
+Type=Application
+Categories=Development
