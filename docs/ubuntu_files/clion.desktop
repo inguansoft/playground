@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=clion
+Comment=clion
+GenericName=clion
+Exec=/usr/bin/clion-2023.2.2/bin/clion.sh
+Icon=/usr/bin/clion-2023.2.2/bin/clion.png
+Path=/usr/bin/clion-2023.2.2/bin/
+Terminal=false
+StartupNotify=true
+Type=Application
+Categories=Development
