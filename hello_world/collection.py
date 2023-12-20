@@ -16,3 +16,13 @@ print('foo =>', d['foo'])
 print('bar =>', d['bar'])
 
 print('e[a]=', e['a'], ' like this array[0]=', array[0])
+
+print(str(array))
+
+arrayb = reversed(array)
+
+print(str(arrayb))
+
+string_a = 'abcdefg'
+string_b = reversed(string_a)
+print("From: ", string_a , " reversed to: ", string_b )
