@@ -2,3 +2,4 @@
 .idea
 .DS_Store
 sizes.dSYM
+cmake-build-debug

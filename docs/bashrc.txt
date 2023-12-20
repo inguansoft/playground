@@ -127,6 +127,6 @@ export PATH="/usr/local/heroku/bin:$PATH"
 
 
 export EMAIL_E2E="mauricio.inguanzo@declara.com"
-export PASSWORD_E2E="ama21nG2013"
+export PASSWORD_E2E="xxxx"
 export SMTPSERVER_E2E="smtp.gmail.com"
 
