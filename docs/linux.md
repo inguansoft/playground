@@ -5,9 +5,7 @@ userdel <user_name>
 usermod -aG sudo username
 
 samba v1
-
 sudo apt install samba
-
 sudo emacs /etc/samba/smb.conf
 client min protocol = NT1
 
