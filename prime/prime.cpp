@@ -40,7 +40,7 @@ public:
 
 class MathHelper
 {
-    InputHandler *input_handler;
+    InputHandler &input_handler;
 
 public:
     /**
@@ -48,7 +48,7 @@ public:
      */
     void calcPrime()
     {
-        int j, k, i = input_handler->getNumber();
+        int j, k, i = input_handler.getNumber();
         k = 0;
         cout << " [";
         while (i > 1)
@@ -73,9 +73,8 @@ public:
         cout << "]\n";
     }
 
-    MathHelper(InputHandler *input_handler_parameter)
+    MathHelper(InputHandler &input_handler_parameter) : input_handler(input_handler_parameter)
     {
-        input_handler = input_handler_parameter;
     }
 };
 
@@ -87,7 +86,7 @@ int main(void)
     int n = 1;
     InputHandler input_handler(n);
     // InputHandler input_handler = InputHandler(n);
-    MathHelper math_helper(&input_handler);
+    MathHelper math_helper(input_handler);
     // MathHelper math_helper = MathHelper(input_handler);
     while (n != 0)
     {
