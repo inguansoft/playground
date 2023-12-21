@@ -1,11 +1,6 @@
 #include <iostream>
 using namespace std;
 
-// class Animal {
-//  	      int speed;
-//  	      Animal Animal() {
-//  	      }
-//  };
 int yy;
 static int rat_things_00;
 extern int rat_things_01;

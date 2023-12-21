@@ -1,4 +1,7 @@
-Autoindent
-On Windows Shift + Alt + F
-On Mac Shift + Option + F
-On Ubuntu Ctrl + Shift + I
+## Shortcuts
+
+| key |  | shift+Option / Shift+Alt | Ctrl+Shift        |
+|:----|:-|:-------------------------|:------------------|
+| F   |  | Windows/Mac: Autoindent  |                   |
+| I   |  |                          | LINUX: Autoindent |
+

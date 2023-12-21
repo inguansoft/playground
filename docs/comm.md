@@ -1,2 +1,2 @@
-Preparation is ocmpasion
+Preparation is compassion
 
