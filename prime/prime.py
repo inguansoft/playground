@@ -19,11 +19,12 @@ def valid_input(number):
 
 input_number = 1
 while (input_number != 0):
-    user_input = input("Prime numbers from 2 to N (0 to exit) N=")
-    if not user_input.isnumeric():
-        print("Expected numeric input")
+    try:
+        user_input = input("Prime numbers from 2 to N (0 to exit) N=").replace(' ','')
+        input_number = int(user_input)
+    except:
+        print("Expected a valid integer number, please try again!")
         continue
-    input_number = int(user_input)
     if valid_input(input_number):
         prime_list = process_prime_list(input_number)
         print (f"Calculated {prime_list}")
