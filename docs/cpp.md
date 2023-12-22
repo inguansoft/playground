@@ -11,6 +11,7 @@ MathHelper(InputHandler &input_handler_parameter) : input_handler(input_handler_
 |:----------|:---------|:---------------------------|:-------------------|:------------------|
 | Pointer   | *        | assigned as much as needed | YES: can be null   | x->x_method();    |
 | Reference | &        | assigned only once         | NO: cannot be null | x.x_method();     |
+
 Diff from pointers to reference example:
 https://github.com/inguansoft/playground/commit/7cf8621b21cee0e15feb3a616d5e19f0c4c689b3
 
