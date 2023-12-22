@@ -99,7 +99,10 @@ int main(void)
         }
         else
         {
-            input_handler.printConstraints();
+            if (n != 0)
+            {
+                input_handler.printConstraints();
+            }
         }
     }
     cout << "N = 0 = Exit, Thanks for visiting!\n\n";
