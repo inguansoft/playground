@@ -49,6 +49,57 @@ size_t are %zu dec %zx hex
 g++ -std=c++11 -o hellocpp hello.cpp
 ```
 
+## Collections / Containers - hHow ever you want to call them
+
+## List
+
+### Recipe
+Include
+#include<list>
+Declaration
+std::list<Type> list_name = {value1, value2, ...};
+API
+// add/remove element at the beginning
+numbers.push_front(0); pop
+    // add/remove element at the end
+    numbers.push_back(4); pop
+prime_numbers.clear();
+.begin()
+.end()
+
+#### References
+https://www.programiz.com/cpp-programming/list
+
+### Iteration
+```c++
+// FROM : https://www.geeksforgeeks.org/listbegin-listend-c-stl/
+// CPP program to illustrate
+// Implementation of begin() function
+#include <iostream>
+#include <list>
+using namespace std;
+
+int main()
+{
+    // declaration of list container
+    list<int> mylist{ 1, 2, 3, 4, 5 };
+
+    // using begin() to print list
+    for (auto it = mylist.begin(); it != mylist.end(); ++it)
+    {
+        cout << ' ' << *it;
+    }
+
+    // Using -std=c++11 std needed in compile time 
+    for(int number : numbers) 
+    {
+        cout << number <<", ";
+    }
+    
+    return 0;
+}
+```
+
 ## Questions
 
 1.  How to print asian and unicode characters in C & C++ ?
