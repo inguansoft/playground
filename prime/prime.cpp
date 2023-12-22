@@ -1,4 +1,6 @@
 #include <iostream>
+#include<list>
+
 using namespace std;
 
 class InputHandler
@@ -41,16 +43,17 @@ public:
 class MathHelper
 {
     InputHandler &input_handler;
+    list<int> prime_numbers;
 
 public:
     /**
-     * Set values on response
+     * Calculate prime numbers and load them into prime_numbers intenal variable
      */
     void calcPrime()
     {
-        int j, k, i = input_handler.getNumber();
-        k = 0;
-        cout << " [";
+        int j, i = input_handler.getNumber();
+        prime_numbers.clear();
+
         while (i > 1)
         {
             for (j = i - 1; j > 1; j--)
@@ -62,15 +65,18 @@ public:
             }
             if (j == 1)
             {
-                // TODO: Push into prime numbers
-                if (k > 0)
-                    cout << ',';
-                cout << i;
-                k++;
+                prime_numbers.push_front(i);
             }
             i--;
         }
-        cout << "]\n";
+    }
+
+    void printCurrentPrimeList(){
+        cout << " [";
+        for(int number: prime_numbers) {
+            cout << " " << number;
+        }
+        cout << " ]";
     }
 
     MathHelper(InputHandler &input_handler_parameter) : input_handler(input_handler_parameter)
@@ -96,6 +102,8 @@ int main(void)
         if (input_handler.isValid())
         {
             math_helper.calcPrime();
+            math_helper.printCurrentPrimeList();
+            cout<<"\n";
         }
         else
         {
