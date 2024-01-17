@@ -16,3 +16,8 @@ brew services start mosquitto
 mosquitto_sub -t topic/state
 mosquitto_pub -t topic/state -m "Hello World"
 ```
+## References
+https://mosquitto.org/man/ : 
+https://mosquitto.org/man/mosquitto_pub-1.html
+https://mosquitto.org/man/mosquitto_sub-1.html
+https://mosquitto.org/man/mosquitto_ctrl-1.html

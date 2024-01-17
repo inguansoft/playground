@@ -12,8 +12,14 @@ array = [100, 234, 402]
 
 print('d:', d)
 
+for x in d:
+    print(f'----- {x} : {d[x]}')
 print('foo =>', d['foo'])
-print('bar =>', d['bar'])
+print('barco =>', d['barco'])
+
+d['ss'] = f'where {34+9}'
+for x in d:
+    print(f'..... {x} : {d[x]}')
 
 print('e[a]=', e['a'], ' like this array[0]=', array[0])
 
