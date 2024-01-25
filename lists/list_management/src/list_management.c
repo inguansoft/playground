@@ -1,11 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-struct node
-{
-    int number;
-    struct node *next;
-};
+#include <list_management.h>
 
 /**
  * @brief
@@ -33,6 +28,14 @@ int list_print(struct node *root)
     return i;
 }
 
+/**
+ * @brief
+ *
+ * @param root
+ * @param insert_index
+ * @param number
+ * @return struct node*
+ */
 struct node *list_add(struct node *root, int insert_index, int number)
 {
     int i = 0;
@@ -73,39 +76,44 @@ struct node *list_add(struct node *root, int insert_index, int number)
     return new_node;
 }
 
-int list_rm(struct node *root, int insert_index, int number)
+int list_rm(struct node *root, int delete_index)
 {
-    return -1;
-}
+    int i = 0;
+    struct node *iterator = root;
+    struct node *iterator2;
 
-int main()
-{
-    int i;
-    struct node *element = NULL, *new_element;
+    if (root == NULL)
+    {
+        fprintf(stderr, "Trying to print empty list\n");
+        return -1;
+    }
+    if (delete_index < -1)
+    {
+        fprintf(stderr, "Removal index needs to be bigger than -1, -1 used to remove last entry from list\n");
+        return -1;
+    }
 
-    // = {.number = 200, .next = NULL},
-    // element1 = {.number = 100, .next = &element0};
-    list_print(element);
+    while ((delete_index == -1 || delete_index > i) && iterator->next != NULL)
+    {
+        i++;
+        iterator2 = iterator;
+        iterator = iterator->next;
+    }
 
-    element = list_add(element, 0, 100);
-    printf("Initial list added-> [0] 100:");
-    list_print(element);
-
-    new_element = list_add(element, -1, 200);
-    printf("list append element 200");
-    list_print(element);
-
-    new_element = list_add(element, -1, 300);
-    printf("list append element 300");
-    list_print(element);
-
-    new_element = list_add(element, -1, 400);
-    printf("list append element 400");
-    list_print(element);
-
-    new_element = list_add(element, 2, 222);
-    printf("list append element 222");
-    list_print(element);
-
-    printf("\n");
+    if (iterator->next == NULL)
+    {
+        if (delete_index != -1 && delete_index != i)
+        {
+            fprintf(stderr, "Trying to delete %d bigger then list size %d\n", delete_index, i);
+            return -1;
+        }
+        if (i == 1)
+        {
+            fprintf(stderr, "Cannot delete element on list with only one element\n");
+            return -1;
+        }
+    }
+    iterator2->next = iterator->next;
+    free(iterator);
+    return 0;
 }
