@@ -1,8 +1,8 @@
 import random
 
-array = {};
+array = [];
 for i in range(0, 100):
-    array[i] = random.randint(0, 100)
+    array.append(random.randint(0, 100))
 
 print("Unsorter array")
 print(array)
