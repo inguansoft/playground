@@ -2,7 +2,7 @@
 // Find substring with highest consecutive repetition
 using namespace std;
 
-string findConsecutiveRepeat(string input_string)
+string findTopConsecutiveRepeat(string input_string)
 {
     // TODO: validate input
     string top_match = "";
@@ -19,7 +19,7 @@ string findConsecutiveRepeat(string input_string)
 int main()
 {
     string input = "abcddddefefefefef";
-    string actual = findConsecutiveRepeat(input),
+    string actual = findTopConsecutiveRepeat(input),
            expected = "dddd";
 
     // Assert
