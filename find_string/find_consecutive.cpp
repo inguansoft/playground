@@ -4,7 +4,8 @@ using namespace std;
 
 string findTopConsecutiveRepeat(string input_string)
 {
-    // TODO: validate input
+    string sample = "dd";
+    sample = nullptr;
     string top_match = "";
     int max_match = 0, current_match = 0;
     char prev = '\0';
