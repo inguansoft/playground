@@ -29,6 +29,8 @@ Now you can start a container with this data volume attached to it by running th
 docker volume rm my-data
 
 docker container ls
+docker ps -a
+docker container ls --all
 
 docker container stats
 docker container stats stress
@@ -45,7 +47,7 @@ docker volume ls
 
 
 
-
+This command is intended to be run directly on a Linux Docker server. It will not work properly when run from a Windows or macOS system.
 $ docker container run \
   --volume=/:/rootfs:ro \
   --volume=/var/run:/var/run:ro \
@@ -59,3 +61,11 @@ $ docker container run \
   --rm \
   --device=/dev/kmsg \
   gcr.io/cadvisor/cadvisor:latest
+  http://172.17.42.10:8080/) and the various detailed charts it has for the host and individual containers
+
+  docker build -t coe00 .
+  docker run coe00
+
+docker context list
+docker context create vagrant --docker host=tcp://127.0.0.1:12375 vagrant
+docker context use vagrant
