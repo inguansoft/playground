@@ -6,36 +6,30 @@
 #include <strings.h> // bzero()
 #include <sys/socket.h>
 #include <unistd.h> // read(), write(), close()
+#include "tcp_socket_conn.h"
 #define MAX 80
 #define PORT 8080
 #define LOCALHOST "127.0.0.1"
 #define SA struct sockaddr
+
 void func(int sockfd)
 {
     char buff[MAX];
     int n;
-    while (1)
+    memset(&buff, '\0', MAX);
+    while ((strncmp(buff, "exit", 4)) != 0)
     {
-        memset(&buff, '\0', MAX); // bzero(buff, sizeof(buff));
-        printf("Enter the string : ");
+        log_client_message(CLIENT, "");
         n = 0;
         while ((buff[n++] = getchar()) != '\n')
             ;
-
         write(sockfd, buff, sizeof(buff));
-        printf("Cleaning string : %s", buff);
-        memset(&buff, '\0', MAX); // bzero(buff, sizeof(buff));
-        printf("ECHO from server ... ");
+        memset(&buff, '\0', MAX);
+        log_client_message(CLIENT, "waiting for server message...\n");
         read(sockfd, buff, sizeof(buff));
-        printf("...  %s", buff);
-        if ((strncmp(buff, "exit", 4)) == 0)
-        {
-            printf("Client Exit...\n");
-            break;
-        } else {
-            printf("Client continues...\n");
-        }
+        log_server_message(CLIENT, buff);
     }
+    log_client_message(CLIENT, "EXIT FROM SERVER, BYE!\n");
 }
 
 int main()

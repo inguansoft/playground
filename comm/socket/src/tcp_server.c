@@ -6,6 +6,7 @@
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <unistd.h> // read(), write(), close()
+#include "tcp_socket_conn.h"
 #define MAX 80
 #define PORT 8080
 #define SA struct sockaddr
@@ -15,30 +16,18 @@ void func(int connfd)
 {
     char buff[MAX];
     int n;
-    // infinite loop for chat
-    for (;;)
+    memset(&buff, '\0', MAX);
+    while (strncmp(EXIT_WORD, buff, 4) != 0)
     {
-        memset(&buff, '\0', MAX); // bzero(buff, MAX);
-        // read the message from client and copy it in buffer
+        log_server_message(CLIENT, "waiting for client message...\n");
         read(connfd, buff, sizeof(buff));
-        // print buffer which contains the client contents
-        printf("From client: %s\t To client : ", buff);
-
-        memset(&buff, '\0', MAX); // bzero(buff, MAX);
+        log_client_message(SERVER, buff);
+        memset(&buff, '\0', MAX);
         n = 0;
-        // copy server message in the buffer
+        log_server_message(SERVER, "");
         while ((buff[n++] = getchar()) != '\n')
             ;
-
-        // and send that buffer to client
         write(connfd, buff, sizeof(buff));
-
-        // if msg contains "Exit" then server exit and chat ended.
-        if (strncmp("exit", buff, 4) == 0)
-        {
-            printf("Server Exit...\n");
-            break;
-        }
     }
 }
 
@@ -46,10 +35,8 @@ void func(int connfd)
 int main()
 {
     struct sockaddr_in servaddr, cli;
-
-    // socket create and verification
-    int connfd, len,
-        sockfd = socket(AF_INET, SOCK_STREAM, 0);
+    int connfd, sockfd = socket(AF_INET, SOCK_STREAM, 0);
+    socklen_t len;
     if (sockfd == -1)
     {
         printf("socket creation failed...\n");
@@ -76,10 +63,8 @@ int main()
         exit(0);
     }
     else
-        printf("Server listening..\n");
+        printf("Server listening...\n");
     len = sizeof(cli);
-
-    // Accept the data packet from client and verification
     connfd = accept(sockfd, (SA *)&cli, &len);
     if (connfd < 0)
     {
@@ -87,11 +72,10 @@ int main()
         exit(0);
     }
     else
-        printf("server accept the client...\n");
+        log_client_message(SERVER, "client in on!\n");
+        log_server_message(SERVER, "waiting for client message!\n");
 
     // Function for chatting between client and server
     func(connfd);
-
-    // After chatting close the socket
     close(sockfd);
 }
