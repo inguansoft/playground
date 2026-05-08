@@ -1,4 +1,5 @@
-bitwiseop
-bitwise_data
-opposite_signs
-play
+bin
+CMakeCache.txt
+CMakeFiles
+cmake_install.cmake
+Makefile
