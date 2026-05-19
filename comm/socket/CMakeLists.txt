@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 4.0)
+cmake_minimum_required(VERSION 3.0)
 project(comm_socket C)
 
 set(SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
