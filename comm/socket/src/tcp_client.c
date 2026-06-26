@@ -9,7 +9,8 @@
 #include "tcp_socket_conn.h"
 #define MAX 80
 #define PORT 8080
-#define LOCALHOST "127.0.0.1"
+//#define LOCALHOST "127.0.0.1"
+#define LOCALHOST "192.168.1.146"
 #define SA struct sockaddr
 
 void func(int sockfd)

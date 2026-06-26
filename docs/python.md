@@ -36,4 +36,8 @@ pyenv shell env_name
 # here we are using python enviornment set
 python --version
 pip install -r requirements
+
+#delete virtuallenvironment with pyenv
+pyenv virtualenv-delete ai_book
 ```
+ 
