@@ -7,7 +7,7 @@
 
 class SafeDataPipeline {
 private:
-    mutable std::mutex realTimeMtx;
+    std::mutex realTimeMtx;
     std::vector<double> realTimeBuffer;
 
     mutable std::shared_mutex historyMtx;
@@ -23,7 +23,7 @@ public:
     }
 
     // 2. Optimizing Historical Reads with Shared Locks
-    double getHistoricalAverage() const {
+    double getHistoricalAverage() const { // const method to allow shared access
         std::shared_lock<std::shared_mutex> lock(historyMtx);
         if (historicalData.empty()) return 0.0;
         
