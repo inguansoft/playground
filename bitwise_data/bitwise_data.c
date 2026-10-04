@@ -4,7 +4,7 @@
 
 int main(void)
 {
-    // 0x01
+    // 0x01    
     unsigned int basket = 0x00, i = 0x12345678, x, k = 0x01, shift_counter = 31, direction = -2;
     printf("Trailing back and forth %08x\n", i);
     while (1)

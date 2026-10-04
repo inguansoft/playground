@@ -22,7 +22,11 @@ void process_data(std::unique_ptr<int> data)
 {
   SuperThing st(3, 4);                       // Local object to demonstrate RAII
   SuperThing *st_ptr = new SuperThing(5, 6); // Dynamically allocated SuperThing
+  std::unique_ptr<SuperThing> ptr = std::make_unique<SuperThing>(7, 8);
+  std::shared_ptr<SuperThing> shared_ptr = std::make_shared<SuperThing>(9, 10);
   std::cout << "Processing data: " << *data << std::endl;
+  //st.getValue(); // Accessing member function of SuperThing
+  //st_ptr->getValue(); // Accessing member function of dynamically allocated SuperThing  
   delete st_ptr; // Don't forget to free the dynamically allocated memory
 }
 
